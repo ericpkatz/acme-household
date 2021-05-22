@@ -34,6 +34,15 @@ const Task = conn.define('task', {
 });
 
 Task.belongsTo(Task, { as: 'parent' });
+Task.hasMany(Task, { as: 'childTasks', foreignKey: 'parentId' });
+
+Task.prototype.findChildTasks = function(){
+  return Task.findAll({
+    where: {
+      parentId: this.id
+    }
+  });
+}
 
 const User = conn.define('user', {
 });
