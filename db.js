@@ -99,6 +99,7 @@ const syncAndSeed = async()=> {
   await Promise.all([
     Chore.create({ userId: jake.id, taskId: shopping.id}),
     Chore.create({ userId: nick.id, taskId: vacuum.id}),
+    Chore.create({ userId: prof.id, taskId: getMail.id}),
   ]);
 
 };

@@ -1,8 +1,18 @@
 const express = require('express');
 const app = express();
 const db = require('./db');
-const { models: { Task } } = db;
+const { models: { Task, User, Chore } } = db;
 
+app.get('/api/chores', async(req, res, next)=> {
+  try {
+    res.send(await Chore.findAll({
+      include: [ User, Task  ]
+    }));
+  }
+  catch(ex){
+    next(ex);
+  }
+});
 
 app.get('/api/tasks', async(req, res, next)=> {
   try {
